@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d [%p] %c{1} – %m%n" />
+		</Console>
+	</Appenders>
+	
+	<Logger name="org.springframework" level="trace">
+      <AppenderRef ref="Console"/>
+    </Logger>
+	
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
