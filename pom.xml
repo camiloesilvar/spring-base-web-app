@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.csr.spring</groupId>
+	<artifactId>spring-base-web-app</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Aplicacion web basica con spring 5</name>
+
+	<properties>
+		<java-version>1.8</java-version>
+		<springframework.version>5.0.7.RELEASE</springframework.version>
+	</properties>
+
+	<dependencies>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>spring-base-web-app</finalName>
+		<plugins>
+			<!-- Para evitar el error "web.xml is missing and <failOnMissingWebXml> 
+				is set to true" en eclipse utilizamos el siguiente plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<!-- Para evitar el error "Build path specifies execution environment 
+				J2SE-1.5. There are no JREs installed in the workspace that are strictly 
+				compatible with this environment." en eclipse utilizamos el siguiente plugin -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
