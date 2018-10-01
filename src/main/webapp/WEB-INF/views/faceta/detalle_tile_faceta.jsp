@@ -1,0 +1,1 @@
+<div>Detalle Tile faceta</div>
