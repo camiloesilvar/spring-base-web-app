@@ -47,22 +47,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //		TilesViewResolver viewResolver = new TilesViewResolver();
 //		registry.viewResolver(viewResolver);
 	}
-//	@Override
-//	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-//		configurer.enable();
-//	}
-//
-//	@Bean
-//	public ContentNegotiatingViewResolver viewResolver(ContentNegotiationManager cnManager) {
-//		ContentNegotiatingViewResolver cnvResolver = new ContentNegotiatingViewResolver();
-//		cnvResolver.setContentNegotiationManager(cnManager);
-//		List<ViewResolver> resolvers = new ArrayList<>();
-//
-//		InternalResourceViewResolver bean = new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
-//
-//		resolvers.add(bean);
-//
-//		cnvResolver.setViewResolvers(resolvers);
-//		return cnvResolver;
-//	}
 }

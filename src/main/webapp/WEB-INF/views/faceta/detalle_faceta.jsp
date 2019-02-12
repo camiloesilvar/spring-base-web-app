@@ -13,7 +13,7 @@
 <link href='<spring:url value="/css/base.css"/>' rel="stylesheet" />
 <title>Pagina basica JSP</title>
 </head>
-<body style>
+<body>
 	<div class="container-fluid" id="wrapper">
 	<div>Detalle Faceta</div>
 	</div>

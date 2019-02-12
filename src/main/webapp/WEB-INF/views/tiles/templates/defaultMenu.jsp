@@ -5,40 +5,40 @@
         <ul class="list-unstyled components">
             <p>Dummy Heading</p>
             <li class="active">
-                <div href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <div data-target="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</div>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">Home 1</a>
+                        <div>Home 1</div>
                     </li>
                     <li>
-                        <a href="#">Home 2</a>
+                        <div>Home 2</div>
                     </li>
                     <li>
-                        <a href="#">Home 3</a>
+                        <div>Home 3</div>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#">About</a>
+                <div>About</div>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <div data-target="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</div>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#">Page 1</a>
+                        <div>Page 1</div>
                     </li>
                     <li>
-                        <a href="#">Page 2</a>
+                        <div>Page 2</div>
                     </li>
                     <li>
-                        <a href="#">Page 3</a>
+                        <div>Page 3</div>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#">Portfolio</a>
+                <div>Portfolio</div>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <div>Contact</div>
             </li>
         </ul>
