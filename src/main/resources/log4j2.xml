@@ -8,6 +8,11 @@
 	</Appenders>
 
 	<Loggers>
+		<!-- SPRING_BASE_WEB_APP_LOGGER -->
+		<Logger name="SPRING_BASE_WEB_APP_LOGGER" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
 		<Root level="info">
 			<AppenderRef ref="Console" />
 		</Root>

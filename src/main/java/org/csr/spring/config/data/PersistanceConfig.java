@@ -5,6 +5,8 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,31 +24,45 @@ import oracle.jdbc.pool.OracleDataSource;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence-orcl.properties" })
-@ComponentScan({ "org.csr.spring.data" })
+@ComponentScan({ "org.csr.spring.model" })
 public class PersistanceConfig {
+
+	private Logger logger = LogManager.getLogger("SPRING_BASE_WEB_APP_LOGGER");
+
 	@Autowired
 	private Environment env;
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() throws SQLException {
+		logger.debug("sessionFactory...");
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(restDataSource());
-		sessionFactory.setPackagesToScan(new String[] { "org.baeldung.spring.persistence.model" });
+		sessionFactory.setDataSource(connectionDataSource());
+		sessionFactory.setPackagesToScan(new String[] { "org.csr.spring.model" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;
 	}
 
 	@Bean
-	public DataSource restDataSource() throws SQLException {
-
+	public DataSource connectionDataSource() throws SQLException {
+		logger.debug("restDataSource...");
 		OracleDataSource dataSource = new OracleDataSource();
-		Properties props = new Properties();
-		props.setProperty("URL", "${jdbc.url}");
-		props.setProperty("user", "${jdbc.username}");
-		props.setProperty("password", "${jdbc.password}");
-		props.setProperty("connectionCachingEnabled", "true");
-		dataSource.setConnectionProperties(props);
+//		Properties props = new Properties();
+//		
+//		props.setProperty("url", env.getProperty("jdbc.url"));
+//		
+//		props.setProperty("user", env.getProperty("jdbc.user"));
+//		
+//		props.setProperty("password", env.getProperty("jdbc.pass"));
+//		props.setProperty("connectionCachingEnabled", "true");
+//		dataSource.setConnectionProperties(props);
+//		dataSource.setDatabaseName("orcl_database");
+		logger.debug(String.format("jdbc.url %s", env.getProperty("jdbc.url")));
+		dataSource.setURL(env.getProperty("jdbc.url"));
+		logger.debug(String.format("jdbc.user %s", env.getProperty("jdbc.user")));
+		dataSource.setUser(env.getProperty("jdbc.user"));
+		logger.debug(String.format("jdbc.pass %s", env.getProperty("jdbc.pass")));
+		dataSource.setPassword(env.getProperty("jdbc.pass"));
 
 		return dataSource;
 	}
@@ -54,7 +70,7 @@ public class PersistanceConfig {
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-
+		logger.debug("transactionManager...");
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 
@@ -63,10 +79,17 @@ public class PersistanceConfig {
 
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+		logger.debug("exceptionTranslation...");
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	Properties hibernateProperties() {
-		return new Properties();
+	private Properties hibernateProperties() {
+		logger.debug("hibernateProperties...");
+		Properties properties = new Properties();
+		logger.debug(String.format("hibernate.dialect %s", env.getProperty("hibernate.dialect")));
+		properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		logger.debug(String.format("hibernate.show_sql %s", env.getProperty("hibernate.show_sql")));
+		properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+		return properties;
 	}
 }
