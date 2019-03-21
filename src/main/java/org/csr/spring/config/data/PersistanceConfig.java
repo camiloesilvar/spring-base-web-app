@@ -47,16 +47,6 @@ public class PersistanceConfig {
 	public DataSource connectionDataSource() throws SQLException {
 		logger.debug("restDataSource...");
 		OracleDataSource dataSource = new OracleDataSource();
-//		Properties props = new Properties();
-//		
-//		props.setProperty("url", env.getProperty("jdbc.url"));
-//		
-//		props.setProperty("user", env.getProperty("jdbc.user"));
-//		
-//		props.setProperty("password", env.getProperty("jdbc.pass"));
-//		props.setProperty("connectionCachingEnabled", "true");
-//		dataSource.setConnectionProperties(props);
-//		dataSource.setDatabaseName("orcl_database");
 		logger.debug(String.format("jdbc.url %s", env.getProperty("jdbc.url")));
 		dataSource.setURL(env.getProperty("jdbc.url"));
 		logger.debug(String.format("jdbc.user %s", env.getProperty("jdbc.user")));
